@@ -54,6 +54,6 @@
             </feature>
         </config-file>
 
-        <source-file src="Location.java" target-dir="com/xunsoft/location" />
+        <source-file src="src/android/com/xunsoft/location/Location.java" target-dir="com/xunsoft/location" />
     </platform>
 </plugin>
