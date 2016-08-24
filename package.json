@@ -1,0 +1,19 @@
+{
+  "name": "com-amap-location",
+  "version": "1.0.0",
+  "description": "Cordova Location Plugin By AMap",
+  "cordova": {
+    "id": "com-amap-location",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "cordova",
+    "location",
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "XinJian,Sun",
+  "license": "Apache 2.0"
+}
