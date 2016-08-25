@@ -22,14 +22,14 @@
     xmlns:rim="http://www.blackberry.com/ns/widgets"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com-amap-location"
-    version="1.0.0">
+    version="1.0.13">
     <name>Location</name>
     <description>Cordova Location Plugin By AMap</description>
     <license>Apache 2.0</license>
     <keywords>cordova,location</keywords>
     
-    <js-module src="www/location.js" name="location">
-        <clobbers target="window.location" />
+    <js-module src="www/location.js" name="Location">
+        <clobbers target="window.xunsoft" />
     </js-module>
 
     <!-- android -->
@@ -44,16 +44,17 @@
             <uses-permission android:name="android.permission.READ_PHONE_STATE" />
             <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
         </config-file>
-        <config-file target="AndroidManifest.xml" parent="/application/*">
-          <service android:name="com.amap.api.location.APSService"></service>
-          <meta-data android:name="com.amap.api.v2.apikey" android:value="key"></meta-data>
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <service android:name="com.amap.api.location.APSService"></service>   
+            <meta-data android:name="com.amap.api.v2.apikey" android:value="API KEY"></meta-data> 
         </config-file>
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="Location" >
-                <param name="android-package" value="com.xunsoft.location"/>
+                <param name="android-package" value="com.xunsoft.location.Location"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/com/xunsoft/location/Location.java" target-dir="com/xunsoft/location" />
+        <source-file src="src/android/com/xunsoft/location/Location.java" target-dir="src/com/xunsoft/location" />
+        <source-file src="src/android/AMap_Location_V2.8.0_20160811.jar" target-dir="libs" />
     </platform>
 </plugin>

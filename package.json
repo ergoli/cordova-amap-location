@@ -1,6 +1,6 @@
 {
   "name": "com-amap-location",
-  "version": "1.0.0",
+  "version": "1.0.13",
   "description": "Cordova Location Plugin By AMap",
   "cordova": {
     "id": "com-amap-location",
@@ -8,11 +8,16 @@
       "android"
     ]
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shenglingshi/cordova-plugin-location.git"
+  },
   "keywords": [
     "cordova",
     "location",
-    "ecosystem:cordova",
-    "cordova-android"
+    "高德",
+    "geolocation",
+    "cordova 高德"
   ],
   "author": "XinJian,Sun",
   "license": "Apache 2.0"
