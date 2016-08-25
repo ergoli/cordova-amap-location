@@ -1,11 +1,12 @@
 {
   "name": "com-amap-location",
-  "version": "1.0.13",
+  "version": "1.0.15",
   "description": "Cordova Location Plugin By AMap",
   "cordova": {
     "id": "com-amap-location",
     "platforms": [
-      "android"
+      "android",
+      "ios"
     ]
   },
   "repository": {

@@ -20,6 +20,9 @@
 
 # com-amap-location
 
+## Description
+	this is a plugin get location info by use GaoDe Map API,it only used in china.
+
 
 ## Installation
 
@@ -27,7 +30,37 @@
 
 ## Properties
 
-window.location.getCurrentPosition
+window.xunsoft.getCurrentPosition(success,fail);
+
+callback function have a params
+
+### success callback params properties
+	#### locationType
+	#### latitude
+	#### longitude
+	#### accuracy
+	#### altitude
+	#### address
+	### country
+	#### province
+	#### city
+	#### district
+	#### street
+	#### locationDetail
+
+### fail callback params properties
+	#### code
+	#### message
+
+### example
+	window.xunsoft.getCurrentPosition(function(response){
+			console.log(response.locationType);
+			console.log(response.latitude);
+			console.log(response.longitude);
+		},function(response){
+			console.log(response.code);
+			console.log(response.message);
+		})
 
 ### Supported Platforms
 - Android

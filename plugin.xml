@@ -22,12 +22,12 @@
     xmlns:rim="http://www.blackberry.com/ns/widgets"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com-amap-location"
-    version="1.0.13">
+    version="1.0.15">
     <name>Location</name>
     <description>Cordova Location Plugin By AMap</description>
     <license>Apache 2.0</license>
     <keywords>cordova,location</keywords>
-    
+
     <js-module src="www/location.js" name="Location">
         <clobbers target="window.xunsoft" />
     </js-module>
@@ -56,5 +56,30 @@
 
         <source-file src="src/android/com/xunsoft/location/Location.java" target-dir="src/com/xunsoft/location" />
         <source-file src="src/android/AMap_Location_V2.8.0_20160811.jar" target-dir="libs" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Location">
+                <param name="ios-package" value="AmapLocation" />
+            </feature>
+        </config-file>
+
+        <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
+            <string>表示应用在前台和后台（suspend 或 terminated）都可以获取到更新的位置数据</string>
+        </config-file>
+
+        <resource-file src="src/ios/AMapLocationKit.xib" />
+        <resource-file src="src/ios/AMapFoundationKit.xib" />
+
+        <header-file src="src/ios/AMapLocation.h" />
+        <source-file src="src/ios/AMapLocation.m" />
+
+        <framework src="SystemConfiguration.framework" />
+        <framework src="CoreTeleohony.framework" />
+        <framework src="libz.dylib" />
+        <framework src="libstdc++6.09.dylib" />
+        <framework src="libc++.dylib" />
     </platform>
 </plugin>
