@@ -1,6 +1,6 @@
 #import "AMapLocation.h"
-#import <AMapFoundationKit/AMapFoundationKit.h>
-#import <AMapLocationKit/AMapLocationKit.h>
+#import <AMapFoundationKit.h>
+#import <AMapLocationKit.h>
 
 
 @implementation AMapLocation
