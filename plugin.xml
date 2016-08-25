@@ -22,7 +22,7 @@
     xmlns:rim="http://www.blackberry.com/ns/widgets"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="com-amap-location"
-    version="1.0.15">
+    version="1.0.18">
     <name>Location</name>
     <description>Cordova Location Plugin By AMap</description>
     <license>Apache 2.0</license>
@@ -70,12 +70,25 @@
             <string>表示应用在前台和后台（suspend 或 terminated）都可以获取到更新的位置数据</string>
         </config-file>
 
-        <resource-file src="src/ios/AMapLocationKit.xib" />
-        <resource-file src="src/ios/AMapFoundationKit.xib" />
+        <header-file src="src/ios/lib/AMapFoundationKit/Headers/AMapFoundationKit.h" />
+        <header-file src="src/ios/lib/AMapFoundationKit/Headers/AMapFoundationVersion.h" />
+        <header-file src="src/ios/lib/AMapFoundationKit/Headers/AMapServices.h" />
+        <header-file src="src/ios/lib/AMapFoundationKit/Headers/AMapURLSearch.h" />
+        <header-file src="src/ios/lib/AMapFoundationKit/Headers/AMapURLSearchConfig.h" />
+        <header-file src="src/ios/lib/AMapFoundationKit/Headers/AMapURLSearchType.h" />
+        <header-file src="src/ios/lib/AMapFoundationKit/Headers/AMapUtility.h" />
+
+        <header-file src="src/ios/lib/AMapLocationKit/Headers/AMapLocationCommonObj.h" />
+        <header-file src="src/ios/lib/AMapLocationKit/Headers/AMapLocationKit.h" />
+        <header-file src="src/ios/lib/AMapLocationKit/Headers/AMapLocationManager.h" />
+        <header-file src="src/ios/lib/AMapLocationKit/Headers/AMapLocationRegionObj.h" />
+        <header-file src="src/ios/lib/AMapLocationKit/Headers/AMapLocationVersion.h" />
 
         <header-file src="src/ios/AMapLocation.h" />
         <source-file src="src/ios/AMapLocation.m" />
 
+        <framework src="src/ios/lib/AMapFoundationKit/AMapFoundationKit.framework" />
+        <framework src="src/ios/lib/AMapLocationKit/AMapLocationKit.framework" />
         <framework src="SystemConfiguration.framework" />
         <framework src="CoreTeleohony.framework" />
         <framework src="libz.dylib" />
