@@ -26,7 +26,7 @@
             NSDictionary *addressInfo = @{@"code":  (long)error.code,
                                           @"message": error.localizedDescription};
 
-             CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:addressInfo];
+            CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR messageAsDictionary:addressInfo];
             [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];      
         }else{
             NSDictionary *addressInfo = @{@"latitude": location.coordinate.latitude,

@@ -24,7 +24,7 @@ public class Location extends CordovaPlugin {
 		final CallbackContext context=callbackContext;
 		Log.d(TAG, "We are entering execute");
 		
-		if(action==""){
+		if(action.equals("getCurrentPosition")){
 			final AMapLocationClient mLocationClient=new AMapLocationClient(this.cordova.getActivity().getApplicationContext());
 	        
 	        AMapLocationListener mLocationListener = new AMapLocationListener(){
@@ -83,7 +83,7 @@ public class Location extends CordovaPlugin {
 	        mLocationClient.setLocationOption(mLocationOption);
 	        mLocationClient.startLocation();
 		}
-		return super.execute(action, args, callbackContext);
+		return true;
 	}
 	
 }
