@@ -1,4 +1,4 @@
-package com.xunsoft.location;
+package com.phonegap.aMapLocation;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
@@ -14,7 +14,7 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
 import com.amap.api.location.AMapLocationClientOption.AMapLocationMode;
 
-public class Location extends CordovaPlugin {
+public class AMapLocation extends CordovaPlugin {
 	
 	private static String TAG="location";
 
