@@ -29,11 +29,13 @@
     cordova plugin add cordova-amap-location --variable ANDROID_KEY=高德网站申请android证书 --variable IOS_KEY=高德网站申请IOS证书
 
 ## Properties
-//获取当前定位
+### 获取当前定位
 window.plugins.aMapLocationPlugin.getCurrentPosition(success, fail);
-//启用定时获取定位，interval参数单位为毫秒，需要大于1000毫秒，success方法定时得到位置回调
+
+### 启用定时获取定位，interval参数单位为毫秒，需要大于1000毫秒，success方法定时得到位置回调
 window.plugins.aMapLocationPlugin.watchPosition(interval, success, fail);
-//关闭定时获取定位
+
+### 关闭定时获取定位
 window.plugins.aMapLocationPlugin.clearWatch(watchID, success, fail);
 
 callback function have a params
