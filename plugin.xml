@@ -57,11 +57,11 @@
         </config-file>
         <config-file target="res/xml/config.xml" parent="/*">
             <feature name="AMapLocation" >
-                <param name="android-package" value="com.phonegap.plugins.aMapLocation.AMapLocation"/>
+                <param name="android-package" value="com.phonegap.plugins.aMapLocation.Location"/>
             </feature>
         </config-file>
 
-        <source-file src="src/android/AMapLocation.java" target-dir="src/com/phonegap/plugins/aMapLocation" />
+        <source-file src="src/android/Location.java" target-dir="src/com/phonegap/plugins/aMapLocation" />
         <source-file src="src/android/AMap_Location_V2.8.0_20160811.jar" target-dir="libs" />
     </platform>
 
