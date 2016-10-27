@@ -30,15 +30,15 @@
 
 ## Properties
 ### 获取当前定位
-window.plugins.aMapLocationPlugin.getCurrentPosition(success, fail);
+`window.plugins.aMapLocationPlugin.getCurrentPosition(success, fail);`
 
 ### 启用定时获取定位，interval参数单位为毫秒，需要大于1000毫秒，success方法定时得到位置回调
-window.plugins.aMapLocationPlugin.watchPosition(interval, success, fail);
+`window.plugins.aMapLocationPlugin.watchPosition(interval, success, fail);`
 
 ### 关闭定时获取定位
-window.plugins.aMapLocationPlugin.clearWatch(watchID, success, fail);
+`window.plugins.aMapLocationPlugin.clearWatch(watchID, success, fail);`
 
-callback function have a params
+## callback function have a params
 
 ### success callback params properties
 	#### locationType
