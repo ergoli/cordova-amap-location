@@ -29,9 +29,8 @@ public class Location extends CordovaPlugin implements AMapLocationListener{
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("getCurrentPosition")) {
-            callback = callbackContext;
-            
+    	callback = callbackContext;
+    	if (action.equals("getCurrentPosition")) {
             locationClient = new AMapLocationClient(this.cordova.getActivity().getApplicationContext());
             locationOption = new AMapLocationClientOption();
             // 设置定位模式为高精度模式
@@ -46,9 +45,14 @@ public class Location extends CordovaPlugin implements AMapLocationListener{
             locationClient.setLocationOption(locationOption);
             // 启动定位
             locationClient.startLocation();
-            
             return true;
         } else if (action.equals("watchPosition")) { //启动持续定位
+            if (keepLocationInstance != null) { //判断是否存在未关闭的持续定位对象
+           	 keepLocationInstance.stopLocation();
+           	 keepLocationInstance.onDestroy();
+           	 keepLocationInstance = null;
+            }
+            
         	int interval = args.optInt(0, 10000); //获取定位间隔参数，缺省10秒钟定位一次
         	
         	 locationClient = new AMapLocationClient(this.cordova.getActivity().getApplicationContext());
@@ -56,7 +60,7 @@ public class Location extends CordovaPlugin implements AMapLocationListener{
              // 设置定位模式为高精度模式
              locationOption.setLocationMode(AMapLocationMode.Hight_Accuracy);
              //设置为多次定位
-             locationOption.setOnceLocation(true);
+             locationOption.setOnceLocation(false);
              // 设置定位监听
              locationClient.setLocationListener(this);
              locationOption.setNeedAddress(true);
@@ -65,16 +69,10 @@ public class Location extends CordovaPlugin implements AMapLocationListener{
              // 启动定位
              locationClient.startLocation();
              keepSendBack = true;
-             
-             if (keepLocationInstance != null) { //判断是否存在未关闭的持续定位对象
-            	 keepLocationInstance.stopLocation();
-            	 keepLocationInstance.onDestroy();
-            	 keepLocationInstance = null;
-             }
              // 存储持续定位对象用于关闭
              keepLocationInstance = locationClient;
              return true;
-        } else if (action.equals("stopWatch")) { //停止持续定位
+        } else if (action.equals("clearWatch")) { //停止持续定位
         	if (keepLocationInstance != null) {
         		keepLocationInstance.stopLocation();
         		keepLocationInstance.onDestroy();
@@ -82,8 +80,9 @@ public class Location extends CordovaPlugin implements AMapLocationListener{
         	}
         	callback.success();
         	return true;
+        } else {
+        	return false;
         }
-        return false;
     }
 
     @Override

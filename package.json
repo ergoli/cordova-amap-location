@@ -1,9 +1,9 @@
 {
-  "name": "com-amap-location",
-  "version": "1.0.22",
+  "name": "cordova-amap-location",
+  "version": "1.0.0",
   "description": "Cordova Location Plugin By AMap",
   "cordova": {
-    "id": "com-amap-location",
+    "id": "cordova-amap-location",
     "platforms": [
       "android",
       "ios"
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/shenglingshi/cordova-plugin-location.git"
+    "url": "https://github.com/ergoli/cordova-amap-location.git"
   },
   "keywords": [
     "cordova",

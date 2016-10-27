@@ -18,19 +18,23 @@
 -->
 
 
-# com-amap-location
+# cordova-amap-location
 
-## Description
-	this is a plugin get location info by use GaoDe Map API,it only used in china.
+## 描述
+	高德定位cordova插件
 
 
 ## Installation
 
-    cordova plugin add com-amap-location
+    cordova plugin add cordova-amap-location --variable ANDROID_KEY=高德网站申请android证书 --variable IOS_KEY=高德网站申请IOS证书
 
 ## Properties
-
-window.xunsoft.getCurrentPosition(success,fail);
+//获取当前定位
+window.plugins.aMapLocationPlugin.getCurrentPosition(success, fail);
+//启用定时获取定位，interval参数单位为毫秒，需要大于1000毫秒，success方法定时得到位置回调
+window.plugins.aMapLocationPlugin.watchPosition(interval, success, fail);
+//关闭定时获取定位
+window.plugins.aMapLocationPlugin.clearWatch(watchID, success, fail);
 
 callback function have a params
 
@@ -41,7 +45,7 @@ callback function have a params
 	#### accuracy
 	#### altitude
 	#### address
-	### country
+	#### country
 	#### province
 	#### city
 	#### district
@@ -53,7 +57,7 @@ callback function have a params
 	#### message
 
 ### example
-	window.xunsoft.getCurrentPosition(function(response){
+	window.plugins.aMapLocationPlugin.getCurrentPosition(function(response){
 			console.log(response.locationType);
 			console.log(response.latitude);
 			console.log(response.longitude);
