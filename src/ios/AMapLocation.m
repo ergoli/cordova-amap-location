@@ -7,7 +7,10 @@
 
 - (void)getCurrentPosition:(CDVInvokedUrlCommand*)command
 {   
-    [AMapLocationServices sharedServices].apiKey =@"您的key";
+    //   从plist.info中获取key信息
+    NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
+    NSString* appKey = [infoDict objectForKey:@"AMapAppKey"];
+    [AMapLocationServices sharedServices].apiKey = appKey;
 
     [self.locationManager setDesiredAccuracy:kCLLocationAccuracyHundredMeters];
     //   定位超时时间，最低2s，此处设置为2s
