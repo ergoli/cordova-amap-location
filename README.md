@@ -21,7 +21,7 @@
 # cordova-amap-location
 
 ## 描述
-	高德定位cordova插件
+	高德定位cordova插件，采用高德最新的api版本，AMapFoundationKit 1.3.1，AMapLocationKit 2.2.0。
 
 
 ## 安装
@@ -32,8 +32,8 @@
 - 获取当前定位
 `window.plugins.aMapLocationPlugin.getCurrentPosition(success, fail);`
 
-- 启用定时获取定位，interval参数单位为毫秒，需要大于1000毫秒，success方法定时得到位置回调
-`window.plugins.aMapLocationPlugin.watchPosition(interval, success, fail);`
+- 启用定时获取定位，interval参数仅支持Android，单位为毫秒，需要大于1000毫秒，success方法定时得到位置信息回调
+`window.plugins.aMapLocationPlugin.watchPosition(success, fail, interval);`
 
 - 关闭定时获取定位
 `window.plugins.aMapLocationPlugin.clearWatch(watchID, success, fail);`
@@ -41,18 +41,25 @@
 ## callback function have a params
 
 ### success callback params properties
-	#### locationType
-	#### latitude
-	#### longitude
-	#### accuracy
-	#### altitude
-	#### address
-	#### country
-	#### province
-	#### city
-	#### district
-	#### street
-	#### locationDetail
+	#### locationType  获取当前定位结果来源，如网络定位结果，详见定位类型表，仅支持Android
+	#### latitude  获取纬度
+	#### longitude  获取经度
+	#### accuracy  获取精度信息
+	#### speed  获取速度信息
+	#### bearing  获取方向信息
+	#### date  定位时间
+	#### address  地址详情
+	#### country  国家信息
+	#### province  省信息
+	#### city  城市信息
+	#### district  城区信息
+	#### street  街道信息
+	#### streetNum  街道门牌号
+	#### cityCode  城市编码
+	#### adCode  地区编码
+	#### poiName POI名称
+	#### aoiName AOI名称
+
 
 ### fail callback params properties
 	#### code
