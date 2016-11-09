@@ -5,6 +5,8 @@ import java.util.Date;
 
 import org.apache.cordova.CallbackContext;
 import org.apache.cordova.CordovaPlugin;
+import org.apache.cordova.LOG;
+import org.apache.cordova.PermissionHelper;
 import org.apache.cordova.PluginResult;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,21 +18,25 @@ import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationClientOption.AMapLocationMode;
 import com.amap.api.location.AMapLocationListener;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.util.Log;
 
 public class Location extends CordovaPlugin implements AMapLocationListener{
-	
-	private static String TAG="location";
-	public static AMapLocationClient keepLocationInstance = null;
-	private AMapLocationClient locationClient = null;
+    
+    String TAG = "GeolocationPlugin";
+    String [] permissions = { Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION };
+    
+    public static AMapLocationClient keepLocationInstance = null;
+    private AMapLocationClient locationClient = null;
     private AMapLocationClientOption locationOption = null;
     boolean keepSendBack = false;
     CallbackContext callback;
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-    	callback = callbackContext;
-    	if (action.equals("getCurrentPosition")) {
+        callback = callbackContext;
+        if (action.equals("getCurrentPosition")) {
             locationClient = new AMapLocationClient(this.cordova.getActivity().getApplicationContext());
             locationOption = new AMapLocationClientOption();
             // 设置定位模式为高精度模式
@@ -48,14 +54,14 @@ public class Location extends CordovaPlugin implements AMapLocationListener{
             return true;
         } else if (action.equals("watchPosition")) { //启动持续定位
             if (keepLocationInstance != null) { //判断是否存在未关闭的持续定位对象
-           	 keepLocationInstance.stopLocation();
-           	 keepLocationInstance.onDestroy();
-           	 keepLocationInstance = null;
+             keepLocationInstance.stopLocation();
+             keepLocationInstance.onDestroy();
+             keepLocationInstance = null;
             }
             
-        	int interval = args.optInt(0, 10000); //获取定位间隔参数，缺省10秒钟定位一次
-        	
-        	 locationClient = new AMapLocationClient(this.cordova.getActivity().getApplicationContext());
+            int interval = args.optInt(0, 10000); //获取定位间隔参数，缺省10秒钟定位一次
+            
+             locationClient = new AMapLocationClient(this.cordova.getActivity().getApplicationContext());
              locationOption = new AMapLocationClientOption();
              // 设置定位模式为高精度模式
              locationOption.setLocationMode(AMapLocationMode.Hight_Accuracy);
@@ -73,15 +79,15 @@ public class Location extends CordovaPlugin implements AMapLocationListener{
              keepLocationInstance = locationClient;
              return true;
         } else if (action.equals("clearWatch")) { //停止持续定位
-        	if (keepLocationInstance != null) {
-        		keepLocationInstance.stopLocation();
-        		keepLocationInstance.onDestroy();
-        		keepLocationInstance = null;
-        	}
-        	callback.success();
-        	return true;
+            if (keepLocationInstance != null) {
+                keepLocationInstance.stopLocation();
+                keepLocationInstance.onDestroy();
+                keepLocationInstance = null;
+            }
+            callback.success();
+            return true;
         } else {
-        	return false;
+            return false;
         }
     }
 
@@ -101,7 +107,6 @@ public class Location extends CordovaPlugin implements AMapLocationListener{
                     locationInfo.put("accuracy", aMapLocation.getAccuracy()); //获取精度信息
                     locationInfo.put("speed", aMapLocation.getSpeed()); //获取速度信息
                     locationInfo.put("bearing", aMapLocation.getBearing()); //获取方向信息
-                    locationInfo.put("accuracy", aMapLocation.getAccuracy()); //获取精度信息
                     locationInfo.put("date", date); //定位时间
                     locationInfo.put("address", aMapLocation.getAddress()); //地址，如果option中设置isNeedAddress为false，则没有此结果
                     locationInfo.put("country", aMapLocation.getCountry()); //国家信息
@@ -115,13 +120,13 @@ public class Location extends CordovaPlugin implements AMapLocationListener{
                     locationInfo.put("poiName", aMapLocation.getPoiName());
                     locationInfo.put("aoiName", aMapLocation.getAoiName());
                 } catch (JSONException e) {
-                	Log.e(TAG, "Locatioin json error:" + e);
+                    Log.e(TAG, "Locatioin json error:" + e);
                 }
                 PluginResult result = new PluginResult(PluginResult.Status.OK, locationInfo);
                 if (!keepSendBack) { //不持续传回定位信息
-                	locationClient.stopLocation(); //只获取一次的停止定位
+                    locationClient.stopLocation(); //只获取一次的停止定位
                 } else {
-                	result.setKeepCallback(true);
+                    result.setKeepCallback(true);
                 }
                 callback.sendPluginResult(result);
             } else {
@@ -131,5 +136,47 @@ public class Location extends CordovaPlugin implements AMapLocationListener{
                 callback.sendPluginResult(result);
             }
         }
+    }
+    
+
+    public void onRequestPermissionResult(int requestCode, String[] permissions,
+                                          int[] grantResults) throws JSONException
+    {
+        PluginResult result;
+        //This is important if we're using Cordova without using Cordova, but we have the geolocation plugin installed
+        if(callback != null) {
+            for (int r : grantResults) {
+                if (r == PackageManager.PERMISSION_DENIED) {
+                    LOG.d(TAG, "Permission Denied!");
+                    result = new PluginResult(PluginResult.Status.ILLEGAL_ACCESS_EXCEPTION);
+                    callback.sendPluginResult(result);
+                    return;
+                }
+
+            }
+            result = new PluginResult(PluginResult.Status.OK);
+            callback.sendPluginResult(result);
+        }
+    }
+
+    public boolean hasPermisssion() {
+        for(String p : permissions)
+        {
+            if(!PermissionHelper.hasPermission(this, p))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /*
+     * We override this so that we can access the permissions variable, which no longer exists in
+     * the parent class, since we can't initialize it reliably in the constructor!
+     */
+
+    public void requestPermissions(int requestCode)
+    {
+        PermissionHelper.requestPermissions(this, requestCode, permissions);
     }
 }

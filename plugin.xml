@@ -22,7 +22,7 @@
     xmlns:rim="http://www.blackberry.com/ns/widgets"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-amap-location"
-    version="1.0.1">
+    version="1.0.2">
     <name>cordova-amap-location</name>
     <description>Cordova Location Plugin By AMap</description>
     <license>Apache 2.0</license>
@@ -81,29 +81,17 @@
             <string></string>
         </config-file>
 
-        <header-file src="src/ios/lib/AMapFoundationKit/Headers/AMapFoundationKit.h" />
-        <header-file src="src/ios/lib/AMapFoundationKit/Headers/AMapFoundationVersion.h" />
-        <header-file src="src/ios/lib/AMapFoundationKit/Headers/AMapServices.h" />
-        <header-file src="src/ios/lib/AMapFoundationKit/Headers/AMapURLSearch.h" />
-        <header-file src="src/ios/lib/AMapFoundationKit/Headers/AMapURLSearchConfig.h" />
-        <header-file src="src/ios/lib/AMapFoundationKit/Headers/AMapURLSearchType.h" />
-        <header-file src="src/ios/lib/AMapFoundationKit/Headers/AMapUtility.h" />
-
-        <header-file src="src/ios/lib/AMapLocationKit/Headers/AMapLocationCommonObj.h" />
-        <header-file src="src/ios/lib/AMapLocationKit/Headers/AMapLocationKit.h" />
-        <header-file src="src/ios/lib/AMapLocationKit/Headers/AMapLocationManager.h" />
-        <header-file src="src/ios/lib/AMapLocationKit/Headers/AMapLocationRegionObj.h" />
-        <header-file src="src/ios/lib/AMapLocationKit/Headers/AMapLocationVersion.h" />
-
         <header-file src="src/ios/AMapLocation.h" />
         <source-file src="src/ios/AMapLocation.m" />
 
-        <framework src="src/ios/lib/AMapFoundationKit/AMapFoundationKit.framework" />
-        <framework src="src/ios/lib/AMapLocationKit/AMapLocationKit.framework" />
+        <framework src="src/ios/lib/AMapFoundationKit.framework"  custom="true"/>
+        <framework src="src/ios/lib/AMapLocationKit.framework"  custom="true"/>
+        <framework src="JavaScriptcore.framework" />
         <framework src="SystemConfiguration.framework" />
-        <framework src="CoreTeleohony.framework" />
-        <framework src="libz.dylib" />
-        <framework src="libstdc++6.09.dylib" />
-        <framework src="libc++.dylib" />
+        <framework src="CoreTelephony.framework" />
+        <framework src="Security.framework" />
+        <framework src="libz.tbd" />
+        <framework src="libc++.tbd" />
+        <framework src="libstdc++.6.0.9.tbd" />
     </platform>
 </plugin>
