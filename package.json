@@ -1,6 +1,6 @@
 {
   "name": "cordova-amap-location",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Cordova Location Plugin By AMap",
   "cordova": {
     "id": "cordova-amap-location",
@@ -20,6 +20,6 @@
     "geolocation",
     "cordova 高德"
   ],
-  "author": "XinJian,Sun",
+  "author": "cubane li",
   "license": "Apache 2.0"
 }
