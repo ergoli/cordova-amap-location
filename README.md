@@ -36,7 +36,7 @@
 `window.plugins.aMapLocationPlugin.watchPosition(success, fail, interval);`
 
 - 关闭定时获取定位
-`window.plugins.aMapLocationPlugin.clearWatch(watchID, success, fail);`
+`window.plugins.aMapLocationPlugin.clearWatch(success, fail);`
 
 ## callback function have a params
 
