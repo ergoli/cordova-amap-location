@@ -22,7 +22,7 @@
     xmlns:rim="http://www.blackberry.com/ns/widgets"
     xmlns:android="http://schemas.android.com/apk/res/android"
     id="cordova-amap-location"
-    version="1.0.3">
+    version="1.0.4">
     <name>cordova-amap-location</name>
     <description>Cordova Location Plugin By AMap</description>
     <license>Apache 2.0</license>
@@ -77,7 +77,7 @@
           <string>$IOS_KEY</string>
         </config-file>
 
-        <config-file target="*-Info.plist" parent="NSLocationWhenInUseUsageDescription">
+        <config-file target="*-Info.plist" parent="NSLocationAlwaysUsageDescription">
             <string></string>
         </config-file>
 
