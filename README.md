@@ -21,7 +21,7 @@
 # cordova-amap-location
 
 ## 描述
-	高德定位cordova插件，采用高德最新的api版本，AMapFoundationKit 1.3.1，AMapLocationKit 2.2.0。
+	高德(amap)定位cordova插件，采用高德(amap)最新的api版本，IOS库采用AMapFoundationKit 1.3.1，AMapLocationKit 2.2.0。
 
 
 ## 安装
@@ -36,7 +36,7 @@
 `window.plugins.aMapLocationPlugin.watchPosition(success, fail, interval);`
 
 - 关闭定时获取定位
-`window.plugins.aMapLocationPlugin.clearWatch(watchID, success, fail);`
+`window.plugins.aMapLocationPlugin.clearWatch(success, fail);`
 
 ## callback function have a params
 
