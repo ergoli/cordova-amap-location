@@ -12,7 +12,7 @@
         NSDictionary* infoDict = [[NSBundle mainBundle] infoDictionary];
         NSString* appKey = [infoDict objectForKey:@"AMapAppKey"];
         [AMapServices sharedServices].apiKey = appKey;
-
+        
         //init locationManager
         self.locationManager = [[AMapLocationManager alloc]init];
         self.locationManager.delegate = self;
@@ -22,7 +22,7 @@
 }
 
 - (void)getCurrentPosition:(CDVInvokedUrlCommand*)command
-{   
+{
     [self initConfig];
     
     //   定位超时时间，最低2s，此处设置为5s
@@ -50,17 +50,17 @@
                                           @"bearing": [NSNumber numberWithDouble:location.course],
                                           @"accuracy": [NSNumber numberWithDouble:location.horizontalAccuracy],
                                           @"date": [dateFormatter stringFromDate:location.timestamp],
-                                          @"address": regeocode.formattedAddress,
-                                          @"country": regeocode.country,
-                                          @"province": regeocode.province,
-                                          @"city": regeocode.city,
-                                          @"cityCode": regeocode.citycode,
-                                          @"district": regeocode.district,
-                                          @"street": regeocode.street,
-                                          @"streetNum": regeocode.number,
-                                          @"adCode": regeocode.adcode,
-                                          @"poiName": regeocode.POIName,
-                                          @"aoiName": regeocode.AOIName};
+                                          @"address": regeocode.formattedAddress ?: @"",
+                                          @"country": regeocode.country ?: @"",
+                                          @"province": regeocode.province ?: @"",
+                                          @"city": regeocode.city ?: @"",
+                                          @"cityCode": regeocode.citycode ?: @"",
+                                          @"district": regeocode.district ?: @"",
+                                          @"street": regeocode.street ?: @"",
+                                          @"streetNum": regeocode.number ?: @"",
+                                          @"adCode": regeocode.adcode ?: @"",
+                                          @"poiName": regeocode.POIName ?: @"",
+                                          @"aoiName": regeocode.AOIName ?: @""};
             CDVPluginResult* pluginResult = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:addressInfo];
             [weakSelf.commandDelegate sendPluginResult:pluginResult callbackId:command.callbackId];
         }
@@ -89,19 +89,19 @@
                                       @"bearing": [NSNumber numberWithDouble:location.course],
                                       @"accuracy": [NSNumber numberWithDouble:location.horizontalAccuracy],
                                       @"date": [dateFormatter stringFromDate:location.timestamp],
-                                      @"address": reGeocode.formattedAddress,
-                                      @"country": reGeocode.country,
-                                      @"province": reGeocode.province,
-                                      @"city": reGeocode.city,
-                                      @"cityCode": reGeocode.citycode,
-                                      @"district": reGeocode.district,
-                                      @"street": reGeocode.street,
-                                      @"streetNum": reGeocode.number,
-                                      @"adCode": reGeocode.adcode,
-                                      @"poiName": reGeocode.POIName,
-                                      @"aoiName": reGeocode.AOIName};
+                                      @"address": reGeocode.formattedAddress ?: @"",
+                                      @"country": reGeocode.country ?: @"",
+                                      @"province": reGeocode.province ?: @"",
+                                      @"city": reGeocode.city ?: @"",
+                                      @"cityCode": reGeocode.citycode ?: @"",
+                                      @"district": reGeocode.district ?: @"",
+                                      @"street": reGeocode.street ?: @"",
+                                      @"streetNum": reGeocode.number ?: @"",
+                                      @"adCode": reGeocode.adcode ?: @"",
+                                      @"poiName": reGeocode.POIName ?: @"",
+                                      @"aoiName": reGeocode.AOIName ?: @""};
         result = [CDVPluginResult resultWithStatus:CDVCommandStatus_OK messageAsDictionary:addressInfo];
-
+        
     } else {
         result = [CDVPluginResult resultWithStatus:CDVCommandStatus_ERROR];
     }
