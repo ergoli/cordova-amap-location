@@ -62,7 +62,7 @@
         </config-file>
 
         <source-file src="src/android/Location.java" target-dir="src/com/phonegap/plugins/aMapLocation" />
-        <source-file src="src/android/AMap_Location_V2.8.0_20160811.jar" target-dir="libs" />
+        <source-file src="src/android/AMap_Location_V4.0.1_20180426.jar" target-dir="libs" />
     </platform>
 
     <!-- ios -->
